@@ -4,7 +4,7 @@ import logo from "../assets/logo.png";
 const Logo = () => {
   return (
     <>
-      <div className="flex items-center gap-1 ">
+      <div className="flex items-center gap-1 cursor-pointer">
         <img className="w-10 " src={logo} alt="" />
         <h2 className="text-xl font-bold text-shadow-xs">
           Taxi

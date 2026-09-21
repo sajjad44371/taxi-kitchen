@@ -1,0 +1,58 @@
+import React, { use, useState } from "react";
+import States from "./States";
+import OrderCard from "./OrderCard";
+import CookingCard from "./CookingCard";
+import ServeCard from "./ServeCard";
+
+const OrderContainer = ({ dataPromise }) => {
+  const orderData = use(dataPromise);
+
+  const [cookingItems, setCookingItems] = useState([]);
+
+  return (
+    <>
+      <div className="container mx-auto">
+        <States
+          orderData={orderData.length}
+          cookingItems={cookingItems.length}
+        ></States>
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-5 py-10">
+          {/* right section  */}
+          <div className="lg:col-span-7">
+            <h2 className="text-4xl font-bold mb-2">Current Orders</h2>
+            <div className="space-y-5">
+              {orderData.map((order) => (
+                <OrderCard
+                  key={order.id}
+                  order={order}
+                  cookingItems={cookingItems}
+                  setCookingItems={setCookingItems}
+                ></OrderCard>
+              ))}
+            </div>
+          </div>
+
+          {/* left section  */}
+          <div className="lg:col-span-5 space-y-5">
+            <div className="flex flex-col">
+              <h2 className="text-4xl font-bold mb-2">Cooking</h2>
+              <div className="space-y-5 rounded-xl p-5 shadow">
+                {cookingItems.map((order) => (
+                  <CookingCard key={order.id} order={order}></CookingCard>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h2 className="text-4xl font-bold mb-2">Ready to Serve</h2>
+              <div className="space-y-5 border rounded-xl shadow">
+                <ServeCard></ServeCard>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
+  );
+};
+
+export default OrderContainer;
