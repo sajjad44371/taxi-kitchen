@@ -1,6 +1,18 @@
 import React from "react";
 
-const ServeCard = ({ order }) => {
+const ServeCard = ({
+  order,
+  serveItems,
+  setServeItems,
+  setOrderData,
+  orderData,
+}) => {
+  const handleServed = (order) => {
+    const remainingServed = serveItems.filter((item) => item.id !== order.id);
+    setServeItems(remainingServed);
+    const remainingOrder = orderData.filter((item) => item.id !== order.id);
+    setOrderData(remainingOrder);
+  };
   return (
     <>
       <div className="border rounded-xl p-5 shadow bg-green-50 hover:shadow-md transition">
@@ -23,6 +35,9 @@ const ServeCard = ({ order }) => {
         <p className="text-gray-600 mt-2">
           <span className="font-semibold">Cooking Time:</span> {order.cooked_At}
         </p>
+        <button onClick={()=>handleServed(order)} className="px-6 mt-3 py-1 shadow text-sm hover:bg-black hover:text-white bg-white cursor-pointer rounded-xl">
+          Served?
+        </button>
       </div>
     </>
   );

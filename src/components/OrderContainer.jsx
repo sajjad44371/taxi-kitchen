@@ -5,8 +5,9 @@ import CookingCard from "./CookingCard";
 import ServeCard from "./ServeCard";
 
 const OrderContainer = ({ dataPromise }) => {
-  const orderData = use(dataPromise);
+  const data = use(dataPromise);
 
+  const [orderData, setOrderData] = useState(data);
   const [cookingItems, setCookingItems] = useState([]);
   const [serveItems, setServeItems] = useState([]);
 
@@ -55,7 +56,13 @@ const OrderContainer = ({ dataPromise }) => {
               <h2 className="text-4xl font-bold mb-2">Ready to Serve</h2>
               <div className="space-y-5 border p-5 rounded-xl shadow">
                 {serveItems.map((order) => (
-                  <ServeCard order={order}></ServeCard>
+                  <ServeCard
+                    order={order}
+                    serveItems={serveItems}
+                    setServeItems={setServeItems}
+                    setOrderData={setOrderData}
+                    orderData={orderData}
+                  ></ServeCard>
                 ))}
               </div>
             </div>
