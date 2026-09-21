@@ -3,6 +3,12 @@ import React from "react";
 
 const OrderCard = ({ order, setCookingItems, cookingItems }) => {
   const handleOrder = (order) => {
+    // validation
+    const isExist = cookingItems.find((item) => item.id === order.id);
+    if (isExist) {
+      alert("Order Already Taken");
+      return;
+    }
     const newOrder = [order, ...cookingItems];
     setCookingItems(newOrder);
   };

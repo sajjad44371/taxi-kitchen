@@ -1,13 +1,6 @@
 import React from "react";
 
-const ServeCard = () => {
-  const order = {
-    order_title: "Beef Steak",
-    table_no: 12,
-    waiterId: "W-007",
-    cooked_At: "12:45 PM",
-  };
-
+const ServeCard = ({ order }) => {
   return (
     <>
       <div className="border rounded-xl p-5 shadow bg-green-50 hover:shadow-md transition">

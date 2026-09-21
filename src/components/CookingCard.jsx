@@ -1,6 +1,22 @@
 import React from "react";
 
-const CookingCard = ({ order }) => {
+const CookingCard = ({
+  order,
+  serveItems,
+  setServeItems,
+  cookingItems,
+  setCookingItems,
+}) => {
+  const handleCooked = (order) => {
+    const newItem = [order, ...serveItems];
+    setServeItems(newItem);
+
+    const remainingCookingItems = cookingItems.filter(
+      (item) => item.id !== order.id,
+    );
+    setCookingItems(remainingCookingItems);
+  };
+
   return (
     <>
       <div
@@ -26,7 +42,10 @@ const CookingCard = ({ order }) => {
         </p>
 
         {/* Static Button */}
-        <button className="px-6 mt-3 py-1 shadow text-sm hover:bg-black hover:text-white bg-white cursor-pointer rounded-xl">
+        <button
+          onClick={() => handleCooked(order)}
+          className="px-6 mt-3 py-1 shadow text-sm hover:bg-black hover:text-white bg-white cursor-pointer rounded-xl"
+        >
           Cooked?
         </button>
       </div>

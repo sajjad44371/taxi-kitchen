@@ -8,6 +8,7 @@ const OrderContainer = ({ dataPromise }) => {
   const orderData = use(dataPromise);
 
   const [cookingItems, setCookingItems] = useState([]);
+  const [serveItems, setServeItems] = useState([]);
 
   return (
     <>
@@ -15,6 +16,7 @@ const OrderContainer = ({ dataPromise }) => {
         <States
           orderData={orderData.length}
           cookingItems={cookingItems.length}
+          serveItems={serveItems.length}
         ></States>
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-5 py-10">
           {/* right section  */}
@@ -38,14 +40,23 @@ const OrderContainer = ({ dataPromise }) => {
               <h2 className="text-4xl font-bold mb-2">Cooking</h2>
               <div className="space-y-5 rounded-xl p-5 shadow">
                 {cookingItems.map((order) => (
-                  <CookingCard key={order.id} order={order}></CookingCard>
+                  <CookingCard
+                    key={order.id}
+                    order={order}
+                    serveItems={serveItems}
+                    setServeItems={setServeItems}
+                    cookingItems={cookingItems}
+                    setCookingItems={setCookingItems}
+                  ></CookingCard>
                 ))}
               </div>
             </div>
             <div>
               <h2 className="text-4xl font-bold mb-2">Ready to Serve</h2>
-              <div className="space-y-5 border rounded-xl shadow">
-                <ServeCard></ServeCard>
+              <div className="space-y-5 border p-5 rounded-xl shadow">
+                {serveItems.map((order) => (
+                  <ServeCard order={order}></ServeCard>
+                ))}
               </div>
             </div>
           </div>
