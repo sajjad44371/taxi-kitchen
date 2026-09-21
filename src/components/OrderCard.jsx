@@ -1,16 +1,19 @@
 import { UtensilsCrossed } from "lucide-react";
 import React from "react";
+import { toast } from "react-toastify";
 
 const OrderCard = ({ order, setCookingItems, cookingItems }) => {
   const handleOrder = (order) => {
     // validation
     const isExist = cookingItems.find((item) => item.id === order.id);
     if (isExist) {
-      alert("Order Already Taken");
+      toast.error("Order Already Taken");
       return;
     }
     const newOrder = [order, ...cookingItems];
     setCookingItems(newOrder);
+
+    toast.success("Order is called!");
   };
 
   return (

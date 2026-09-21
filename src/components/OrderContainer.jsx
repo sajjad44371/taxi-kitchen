@@ -57,6 +57,7 @@ const OrderContainer = ({ dataPromise }) => {
               <div className="space-y-5 border p-5 rounded-xl shadow">
                 {serveItems.map((order) => (
                   <ServeCard
+                    key={order.id}
                     order={order}
                     serveItems={serveItems}
                     setServeItems={setServeItems}

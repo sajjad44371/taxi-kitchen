@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 const ServeCard = ({
   order,
@@ -12,6 +13,8 @@ const ServeCard = ({
     setServeItems(remainingServed);
     const remainingOrder = orderData.filter((item) => item.id !== order.id);
     setOrderData(remainingOrder);
+
+    toast.success("Order Served!");
   };
   return (
     <>
@@ -33,9 +36,12 @@ const ServeCard = ({
 
         {/* Cooking Time */}
         <p className="text-gray-600 mt-2">
-          <span className="font-semibold">Cooking Time:</span> {order.cooked_At}
+          <span className="font-semibold">Cooking Time:</span> {order.cookedAt}
         </p>
-        <button onClick={()=>handleServed(order)} className="px-6 mt-3 py-1 shadow text-sm hover:bg-black hover:text-white bg-white cursor-pointer rounded-xl">
+        <button
+          onClick={() => handleServed(order)}
+          className="px-6 mt-3 py-1 shadow text-sm hover:bg-black hover:text-white bg-white cursor-pointer rounded-xl"
+        >
           Served?
         </button>
       </div>

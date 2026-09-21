@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 const CookingCard = ({
   order,
@@ -8,6 +9,7 @@ const CookingCard = ({
   setCookingItems,
 }) => {
   const handleCooked = (order) => {
+    order.cookedAt = new Date().toLocaleTimeString();
     const newItem = [order, ...serveItems];
     setServeItems(newItem);
 
@@ -15,6 +17,8 @@ const CookingCard = ({
       (item) => item.id !== order.id,
     );
     setCookingItems(remainingCookingItems);
+
+    toast.success("Order is ready to serve!!");
   };
 
   return (
